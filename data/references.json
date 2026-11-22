@@ -1,0 +1,10 @@
+[
+  {"name":"United Nations","aliases":["UN"],"officialDomains":["un.org"],"sourceUrl":"https://www.un.org/","lastChecked":"2026-11-21","_note":"Team must manually verify before demo"},
+  {"name":"World Health Organization","aliases":["WHO"],"officialDomains":["who.int"],"sourceUrl":"https://www.who.int/","lastChecked":"2026-11-21","_note":"Team must manually verify before demo"},
+  {"name":"NASA","aliases":[],"officialDomains":["nasa.gov"],"sourceUrl":"https://www.nasa.gov/","lastChecked":"2026-11-21","_note":"Team must manually verify before demo"},
+  {"name":"UNICEF","aliases":[],"officialDomains":["unicef.org"],"sourceUrl":"https://www.unicef.org/","lastChecked":"2026-11-21","_note":"Team must manually verify before demo"},
+  {"name":"World Bank","aliases":[],"officialDomains":["worldbank.org"],"sourceUrl":"https://www.worldbank.org/","lastChecked":"2026-11-21","_note":"Team must manually verify before demo"},
+  {"name":"MIT","aliases":["Massachusetts Institute of Technology"],"officialDomains":["mit.edu"],"sourceUrl":"https://www.mit.edu/","lastChecked":"2026-11-21","_note":"Team must manually verify before demo"},
+  {"name":"Stanford University","aliases":["Stanford"],"officialDomains":["stanford.edu"],"sourceUrl":"https://www.stanford.edu/","lastChecked":"2026-11-21","_note":"Team must manually verify before demo"},
+  {"name":"Acme Test Organization","aliases":["AcmeTest"],"officialDomains":["acmetest.example"],"sourceUrl":"https://acmetest.example/","lastChecked":"2026-11-21","_note":"TEST ONLY; Team must manually verify before demo"}
+]

@@ -1,0 +1,5 @@
+.env
+node_modules/
+data/submissions.json
+data/reports.json
+data/.test-run/
