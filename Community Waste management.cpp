@@ -316,8 +316,22 @@ cout<<"\n\nEnter the Collection Request"<<k+1<<"Details:\n";
                 
                 goto EQ;
             }
-   
 }
+
+ofstream file("Collection Request Details");
+
+   for(int j = 0 ; j < r; j++){
+
+file << "Collection Request Details"<< endl;
+file << "\nRequest_Id" << R_ID[j] << endl;
+file << "Date:" << date[j] << endl;
+file << "Waste Category :" << wCat[j] <<endl;
+file << "Estimated Quantity :" << E_quantity[j] << endl;
+
+   }
+
+   file.close();
+
 }
 public:
     int vid[100],capacity[100],k;
@@ -370,6 +384,23 @@ public:
     }
     }
     }
+
+ofstream file("Vechicle and staff Details");
+file << "Vechicle and staff Details" << endl;
+for(int v = 0; v < k ; v++){
+ 
+file << "Vehicle ID: " << vid[v] << endl;
+file << "Staff name :" << staff[v] <<endl;
+file << "Capacity(in Kg) :" << capacity[v] << endl;
+file << "Availability :" << availability[v] << endl;
+
+if(availability[v]=="available" || availability[v]=="Available"){
+
+file << "Assigned Block :" << area[v] << endl;
+}
+}
+
+file.close();
     }
     
     
