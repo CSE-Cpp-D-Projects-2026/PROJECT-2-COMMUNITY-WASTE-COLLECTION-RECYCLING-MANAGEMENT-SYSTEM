@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include<fstream>
 using namespace std;
 
 class Resident{
@@ -36,7 +37,7 @@ class Resident{
         cin.ignore();
         getline(cin, R_name[i]);
 
-        cout << "Enter the Resident Address :";
+        cout << "Enter the Resident Block :";
         cin.ignore();
         getline(cin, Address[i]);
 
@@ -90,7 +91,7 @@ case 1:
         cin.ignore();
         getline(cin, R_name[n-1]);
 
-        cout << "Enter the Resident Address :";
+        cout << "Enter the Resident Block :";
         cin.ignore();
         getline(cin, Address[n-1]);
 
@@ -122,7 +123,7 @@ case 2:
         cin.ignore();
         getline(cin, R_name[b]);
 
-        cout << "Enter the modified Resident Address :";
+        cout << "Enter the modified Resident Block :";
         cin.ignore();
         getline(cin, Address[b]);
 
@@ -155,7 +156,7 @@ case 4:
 
         cout << "Resident Name :"<<R_name[b]<<endl;
 
-        cout << "Enter the Resident Address :"<<Address[b]<<endl;
+        cout << "Enter the Resident Block :"<<Address[b]<<endl;
         
         cout << "Contact no :"<< contact_no[b]<<endl;
 
@@ -179,8 +180,32 @@ case 6:
         cout<<"Service status of Household-"<<ID[b]<<" was deactivated successfully"<<endl;
     }
     break;
+    
+case 7:
+cout<<"Exited successfully\n";
+break;
+default:
+cout<<"Invalid Choice-Exited";
     }
    }
+   ofstream file("Residents Details");
+   
+   for(int i =0; i < n; i++){
+       
+       file <<"\n\nDetails of Resident-"<<i+1<<":\n";
+       file << "Household ID :"<<ID[i]<<endl;
+
+       file << "Resident Name :"<<R_name[i]<<endl;
+
+        file << "Enter the Resident Block :"<<Address[i]<<endl;
+        
+        file << "Contact no :"<< contact_no[i]<<endl;
+
+        file << "Service Status :"<< status[i]<<endl;
+       
+   }
+   
+   file.close();
  }
  
  public:
@@ -194,7 +219,7 @@ void waste() {
     do{
     cout<<"\n\nEnter the Waste Category Details:\n";
     catname:
-    cout<<"Enter the Category Name:\n";
+    cout<<"Enter the Category Name:";
     cin.ignore();
     getline(cin,caname);
     if(caname==" ") {
@@ -202,7 +227,7 @@ void waste() {
         goto catname;
     }
     cname.push_back(caname);
-    cout<<"\nEnter the Waste Category ID:";
+    cout<<"Enter the Waste Category ID:";
     cin>>wid;
     cid.push_back(wid);
     cout<<"Enter the Category Description:";
@@ -216,38 +241,52 @@ void waste() {
     cout<<"Whether the category is Recyclable (Y/N):";
     cin>>y;
     Y.push_back(y);
+    ofstream file("Waste Category Details");
+    int i=0;
+    file<<"Waste Category Name: "<<cname[i];
+    file << "Waste Category ID: "<<cid[i]<<endl;
+    file << "Category Description: "<<desc[i]<< endl;
+    file << "Handling Instructions: "<<inst[i]<< endl;
+    file << "Recyclable:"<<y<<endl;
+    i++;
+    file.close();
+    i++;
     cout<<"Do you want to add more Categories:(Y/N):";
     cin>>y;
     } while(y=='y' || y=='Y');
+    
 }
 
 public: 
 
-int R_ID;
-string date;
-string wCat;
-int E_quantity;
-string collection_status="pending";
+int r;
+int R_ID[100];
+int date[100];
+string wCat[100];
+int E_quantity[100];
+vector<string>cstatus{20,"Pending"};
 
 void collection_req() {
-cout<<"\n\nEnter the Collection Request Details:\n";
+    cout<<"Enter the number of Collection requests:";
+    cin>>r;
+    for(int k=0;k<r;k++) {
+cout<<"\n\nEnter the Collection Request"<<k+1<<"Details:\n";
     cout << "Request_ID :";
-    cin >> R_ID;
+    cin >> R_ID[k];
     
-    cout << "Date :";
-    cin >> date;
+    cout << "Date (0-31) :";
+    cin >> date[k];
     
     wCa:
     
     cout << "Waste Category :";
-    cin.ignore();
-    getline(cin,wCat);
+    getline(cin,wCat[k]);
     
     int count = 0;
     
     for(int i=0; i < cname.size();i++){
         
-    if(wCat == cname[i]){
+    if(wCat[k] == cname[i]){
         
         count++;
     }
@@ -269,15 +308,16 @@ cout<<"\n\nEnter the Collection Request Details:\n";
     EQ:
     
     cout << "Estimated Quantity(in kg) :";
-    cin >> E_quantity;
+    cin >> E_quantity[k];
 
-            if(E_quantity <= 0){
+            if(E_quantity[k] <= 0){
                 
                 cout << "Invalid Quantity" << endl;
                 
                 goto EQ;
             }
-    
+   
+}
 }
 public:
     int vid[100],capacity[100],k;
@@ -311,12 +351,28 @@ public:
         cout<<"Invalid availability"<<endl;
             goto avail;
     }
-    cout<<"Assigned Area / Block:";
+    if(availability[i]=="available" || availability[i]=="Available") {
+    int are=0;
+    block:
+    cout<<"Assigned Block:";
     cin.ignore();
     getline(cin,area[i]);
+    
+    for(int j=0;j<n;j++) {
+        if(area[i]==Address[j]) {
+            are++;
+        }
+    }
+    if(are<=0) {
+        cout<<"Invalid Block Assignment\n";
+        goto block;
+        
     }
     }
-
+    }
+    }
+    
+    
 };
 
 
@@ -330,6 +386,7 @@ int main(){
     r.waste();
     r.collection_req();
     r.vehicle();
+    
 
     return 0;
 }
