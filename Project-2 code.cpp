@@ -250,7 +250,6 @@ void waste() {
     file << "Recyclable:"<<y<<endl;
     i++;
     file.close();
-    i++;
     cout<<"Do you want to add more Categories:(Y/N):";
     cin>>y;
     } while(y=='y' || y=='Y');
