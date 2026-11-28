@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include<fstream>
 using namespace std;
 
 class Resident{
@@ -36,7 +37,7 @@ class Resident{
         cin.ignore();
         getline(cin, R_name[i]);
 
-        cout << "Enter the Resident Address :";
+        cout << "Enter the Resident Block :";
         cin.ignore();
         getline(cin, Address[i]);
 
@@ -90,7 +91,7 @@ case 1:
         cin.ignore();
         getline(cin, R_name[n-1]);
 
-        cout << "Enter the Resident Address :";
+        cout << "Enter the Resident Block :";
         cin.ignore();
         getline(cin, Address[n-1]);
 
@@ -122,7 +123,11 @@ case 2:
         cin.ignore();
         getline(cin, R_name[b]);
 
+<<<<<<< HEAD
         cout << "Enter the modified Resident Address :";
+=======
+        cout << "Enter the modified Resident Block :";
+>>>>>>> origin/main
         cin.ignore();
         getline(cin, Address[b]);
 
@@ -155,7 +160,11 @@ case 4:
 
         cout << "Resident Name :"<<R_name[b]<<endl;
 
+<<<<<<< HEAD
         cout << "Enter the Resident Address :"<<Address[b]<<endl;
+=======
+        cout << "Enter the Resident Block :"<<Address[b]<<endl;
+>>>>>>> origin/main
         
         cout << "Contact no :"<< contact_no[b]<<endl;
 
@@ -179,8 +188,37 @@ case 6:
         cout<<"Service status of Household-"<<ID[b]<<" was deactivated successfully"<<endl;
     }
     break;
+<<<<<<< HEAD
     }
    }
+=======
+    
+case 7:
+cout<<"Exited successfully\n";
+break;
+default:
+cout<<"Invalid Choice-Exited";
+    }
+   }
+   ofstream file("Residents Details");
+   
+   for(int i =0; i < n; i++){
+       
+       file <<"\n\nDetails of Resident-"<<i+1<<":\n";
+       file << "Household ID :"<<ID[i]<<endl;
+
+       file << "Resident Name :"<<R_name[i]<<endl;
+
+        file << "Enter the Resident Block :"<<Address[i]<<endl;
+        
+        file << "Contact no :"<< contact_no[i]<<endl;
+
+        file << "Service Status :"<< status[i]<<endl;
+       
+   }
+   
+   file.close();
+>>>>>>> origin/main
  }
  
  public:
@@ -194,7 +232,11 @@ void waste() {
     do{
     cout<<"\n\nEnter the Waste Category Details:\n";
     catname:
+<<<<<<< HEAD
     cout<<"Enter the Category Name:\n";
+=======
+    cout<<"Enter the Category Name:";
+>>>>>>> origin/main
     cin.ignore();
     getline(cin,caname);
     if(caname==" ") {
@@ -202,7 +244,11 @@ void waste() {
         goto catname;
     }
     cname.push_back(caname);
+<<<<<<< HEAD
     cout<<"\nEnter the Waste Category ID:";
+=======
+    cout<<"Enter the Waste Category ID:";
+>>>>>>> origin/main
     cin>>wid;
     cid.push_back(wid);
     cout<<"Enter the Category Description:";
@@ -216,13 +262,31 @@ void waste() {
     cout<<"Whether the category is Recyclable (Y/N):";
     cin>>y;
     Y.push_back(y);
+<<<<<<< HEAD
     cout<<"Do you want to add more Categories:(Y/N):";
     cin>>y;
     } while(y=='y' || y=='Y');
+=======
+    ofstream file("Waste Category Details");
+    int i=0;
+    file<<"Waste Category Name: "<<cname[i];
+    file << "Waste Category ID: "<<cid[i]<<endl;
+    file << "Category Description: "<<desc[i]<< endl;
+    file << "Handling Instructions: "<<inst[i]<< endl;
+    file << "Recyclable:"<<y<<endl;
+    i++;
+    file.close();
+    i++;
+    cout<<"Do you want to add more Categories:(Y/N):";
+    cin>>y;
+    } while(y=='y' || y=='Y');
+    
+>>>>>>> origin/main
 }
 
 public: 
 
+<<<<<<< HEAD
 int R_ID;
 string date;
 string wCat;
@@ -236,18 +300,45 @@ cout<<"\n\nEnter the Collection Request Details:\n";
     
     cout << "Date :";
     cin >> date;
+=======
+int r;
+int R_ID[100];
+int date[100];
+string wCat[100];
+int E_quantity[100];
+vector<string>cstatus{20,"Pending"};
+
+void collection_req() {
+    cout<<"Enter the number of Collection requests:";
+    cin>>r;
+    for(int k=0;k<r;k++) {
+cout<<"\n\nEnter the Collection Request"<<k+1<<"Details:\n";
+    cout << "Request_ID :";
+    cin >> R_ID[k];
+    
+    cout << "Date (0-31) :";
+    cin >> date[k];
+>>>>>>> origin/main
     
     wCa:
     
     cout << "Waste Category :";
+<<<<<<< HEAD
     cin.ignore();
     getline(cin,wCat);
+=======
+    getline(cin,wCat[k]);
+>>>>>>> origin/main
     
     int count = 0;
     
     for(int i=0; i < cname.size();i++){
         
+<<<<<<< HEAD
     if(wCat == cname[i]){
+=======
+    if(wCat[k] == cname[i]){
+>>>>>>> origin/main
         
         count++;
     }
@@ -269,6 +360,7 @@ cout<<"\n\nEnter the Collection Request Details:\n";
     EQ:
     
     cout << "Estimated Quantity(in kg) :";
+<<<<<<< HEAD
     cin >> E_quantity;
 
             if(E_quantity <= 0){
@@ -316,7 +408,104 @@ public:
     getline(cin,area[i]);
     }
     }
+=======
+    cin >> E_quantity[k];
+>>>>>>> origin/main
 
+            if(E_quantity[k] <= 0){
+                
+                cout << "Invalid Quantity" << endl;
+                
+                goto EQ;
+            }
+}
+
+ofstream file("Collection Request Details");
+
+   for(int j = 0 ; j < r; j++){
+
+file << "Collection Request Details"<< endl;
+file << "\nRequest_Id" << R_ID[j] << endl;
+file << "Date:" << date[j] << endl;
+file << "Waste Category :" << wCat[j] <<endl;
+file << "Estimated Quantity :" << E_quantity[j] << endl;
+
+   }
+
+   file.close();
+
+}
+public:
+    int vid[100],capacity[100],k;
+    string staff[100],area[100],availability[100];
+    
+    void vehicle() {
+    cout<<"\n\nEnter the Vehicle and Staff Details:\n";
+    cout<<"Enter number of Vehicles: ";
+    cin>>k;
+
+    for(int i=0;i<k;i++) {
+    cout<<"\nEnter Vehicle-"<<i+1<<" details:\n";
+    vid:
+    cout<<"Vehicle ID:";
+    cin>>vid[i];
+    for(int j=0;j<i;j++) {
+        if(vid[i]==vid[j]) {
+            cout<<"Duplicate Vehicle ID:";
+            goto vid;
+        }
+    }
+    cout<<"Staff / Team Name:";
+    cin.ignore();
+    getline(cin,staff[i]);
+    cout<<"Capacity (kg):";
+    cin>>capacity[i];
+    avail:
+    cout<<"Availability (Available/Unavailable):";
+    cin>>availability[i];
+    if(availability[i]!="Available" && availability[i]!="available" && availability[i]!="Unavailable" && availability[i]!="unavailable") {
+        cout<<"Invalid availability"<<endl;
+            goto avail;
+    }
+    if(availability[i]=="available" || availability[i]=="Available") {
+    int are=0;
+    block:
+    cout<<"Assigned Block:";
+    cin.ignore();
+    getline(cin,area[i]);
+    
+    for(int j=0;j<n;j++) {
+        if(area[i]==Address[j]) {
+            are++;
+        }
+    }
+    if(are<=0) {
+        cout<<"Invalid Block Assignment\n";
+        goto block;
+        
+    }
+    }
+    }
+
+ofstream file("Vechicle and staff Details");
+file << "Vechicle and staff Details" << endl;
+for(int v = 0; v < k ; v++){
+ 
+file << "Vehicle ID: " << vid[v] << endl;
+file << "Staff name :" << staff[v] <<endl;
+file << "Capacity(in Kg) :" << capacity[v] << endl;
+file << "Availability :" << availability[v] << endl;
+
+if(availability[v]=="available" || availability[v]=="Available"){
+
+file << "Assigned Block :" << area[v] << endl;
+}
+}
+
+file.close();
+    }
+    
+    
 };
 
 
@@ -330,6 +519,10 @@ int main(){
     r.waste();
     r.collection_req();
     r.vehicle();
+<<<<<<< HEAD
+=======
+    
+>>>>>>> origin/main
 
     return 0;
 }
